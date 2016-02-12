@@ -1,0 +1,9 @@
+let compte n =
+    let guy = n+1 in
+	let rec compteDansLOrdre n =
+		let truc = guy in 
+		match n with
+		| 0 -> ()
+		|_ -> print_int (truc-n); compteDansLOrdre (n-1) in
+
+compte read_int();;
