@@ -1,13 +1,13 @@
 (*
- * /dragdrop.ml
- * File Description: Drag an drop a circle
+ * 03 - Drag Drop.ml
+ * Drag and drop a circle
  *
  * Licence: https://creativecommons.org/publicdomain/zero/1.0/
  * Author: Léo Andrès (ndrs.fr)
  * Contact: leo@ndrs.fr
  *
- * ocamlc -o dragdrop dragdrop.ml
- * ./dragdrop
+ * ocamlc -o 03\ -\ Drag\ Drop graphics.cma  03\ -\ Drag\ Drop.ml
+ * ./03\ -\ Drag\ Drop
  *)
 
 open Graphics;;
@@ -25,15 +25,12 @@ let rec push x y =
   let my = event.mouse_y in
 
   if (mx < (x + 10)) && (mx > (x - 10)) && (my < (y + 10)) && (my > (y - 10)) then begin
-    drag x y mx my;
+    drag x y;
   end else begin
     push x y;
   end
 
-and drag x y mx my =
-
-  set_color red;
-  fill_circle mx my red;
+and drag x y =
 
   let event = wait_next_event[Button_down; Mouse_motion] in
 
@@ -43,7 +40,7 @@ and drag x y mx my =
   if not(event.button) then push mousex mousey else begin
     set_color white;
     fill_circle x y 10;
-    drag x y mousex mousey
+    drag x y
   end
 
 let rec jeu () =
